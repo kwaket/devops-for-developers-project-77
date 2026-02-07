@@ -18,3 +18,18 @@ variable "yc_zone" {
   description = "Yandex Cloud Zone"
   default     = "ru-central1-a"
 }
+
+variable "db_user" {
+  type        = string
+  description = "Name of the n8n database user"
+}
+
+variable "db_password" {
+  type        = string
+  description = "Password for the n8n database user"
+}
+
+variable "db_name" {
+  type        = string
+  description = "Name of the n8n database"
+}
