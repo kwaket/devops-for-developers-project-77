@@ -19,7 +19,7 @@ resource "yandex_alb_backend_group" "n8n-bg" {
         path = "/"
       }
     }
-    http2 = "true"
+    http2 = "false"
   }
 }
 
@@ -30,7 +30,6 @@ resource "yandex_alb_http_router" "n8n-router" {
 resource "yandex_alb_virtual_host" "n8n-host" {
   name           = "n8n-host"
   http_router_id = yandex_alb_http_router.n8n-router.id
-
   route {
     name = "n8n-route"
     http_route {
