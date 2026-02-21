@@ -56,3 +56,9 @@ variable "ansible_inventory_path" {
   description = "Path to the Ansible inventory file"
   default     = "../ansible/inventory.yml"
 }
+
+variable "ansible_db_credentials_path" {
+  type        = string
+  description = "Path to the Ansible database credential file"
+  default     = "../ansible/group_vars/n8n/vault_database.yml"
+}

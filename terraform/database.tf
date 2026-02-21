@@ -45,3 +45,14 @@ resource "yandex_mdb_postgresql_database" "db" {
   lc_type    = "en_US.UTF-8"
   depends_on = [yandex_mdb_postgresql_cluster.dbcluster]
 }
+
+resource "local_file" "n8n" {
+  content = templatefile("templates/db_credentials.yml.tpl", {
+    db_url      = "${yandex_mdb_postgresql_cluster.dbcluster.host[0].fqdn}.rw.mdb.yandexcloud.net"
+    db_name     = yandex_mdb_postgresql_database.db.name
+    db_user     = yandex_mdb_postgresql_user.dbuser.name
+    db_password = yandex_mdb_postgresql_user.dbuser.password
+    db_port     = "6432"
+  })
+  filename = var.ansible_db_credentials_path
+}
