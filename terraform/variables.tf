@@ -33,3 +33,20 @@ variable "db_name" {
   type        = string
   description = "Name of the n8n database"
 }
+
+variable "vm_image_family" {
+  type        = string
+  description = "Family of the VM image"
+  default     = "debian-12"
+}
+
+variable "vm_user" {
+  type        = string
+  description = "Name of the VM user"
+  default     = "debian"
+}
+
+variable "ssh_public_key_path" {
+  type        = string
+  description = "Path to the SSH public key"
+}

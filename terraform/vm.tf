@@ -11,7 +11,14 @@ resource "yandex_resourcemanager_folder_iam_member" "sa-editor" {
 }
 
 data "yandex_compute_image" "debian" {
-  family = "debian-12"
+  family = var.vm_image_family
+}
+
+locals {
+  cloud_init = templatefile("${path.module}/templates/cloud-init.yml.tpl", {
+    user           = var.vm_user
+    ssh_public_key = "${file("${var.ssh_public_key_path}")}"
+  })
 }
 
 resource "yandex_compute_instance" "web-1" {
@@ -41,7 +48,7 @@ resource "yandex_compute_instance" "web-1" {
   }
 
   metadata = {
-    ssh-keys = "root:${file("~/.ssh/id_ed25519.pub")}" # TODO: fix it. Move to variable
+    user-data = local.cloud_init
   }
 
   scheduling_policy {
@@ -77,7 +84,7 @@ resource "yandex_compute_instance" "web-2" {
   }
 
   metadata = {
-    ssh-keys = "root:${file("~/.ssh/id_ed25519.pub")}" # TODO: fix it. Move to variable
+    user-data = local.cloud_init
   }
 
   scheduling_policy {
