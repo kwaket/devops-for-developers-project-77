@@ -50,3 +50,9 @@ variable "ssh_public_key_path" {
   type        = string
   description = "Path to the SSH public key"
 }
+
+variable "ansible_inventory_path" {
+  type        = string
+  description = "Path to the Ansible inventory file"
+  default     = "../ansible/inventory.yml"
+}
