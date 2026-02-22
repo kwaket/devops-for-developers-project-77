@@ -1,6 +1,6 @@
 all:
   children:
-    webservers:
+    n8n:
       hosts:
         web1:
           ansible_host: ${web_1_ip}

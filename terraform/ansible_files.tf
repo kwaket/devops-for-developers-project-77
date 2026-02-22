@@ -17,7 +17,7 @@ resource "local_file" "ansible_vault" {
 
 resource "local_file" "ansible_vars" {
   content = templatefile("templates/app_vars.yml.tpl", {
-    db_host        = "${yandex_mdb_postgresql_cluster.dbcluster.host[0].fqdn}.rw.mdb.yandexcloud.net"
+    db_host        = "${yandex_mdb_postgresql_cluster.dbcluster.host[0].fqdn}"
     db_name        = yandex_mdb_postgresql_database.db.name
     db_user        = yandex_mdb_postgresql_user.dbuser.name
     db_port        = "6432"
