@@ -1,2 +1,4 @@
-terraform/secret.*
 terraform/.terraform
+terraform/secret*.tfvars
+terraform/secret*.tfvars.json
+ansible/.vault_pass.txt
