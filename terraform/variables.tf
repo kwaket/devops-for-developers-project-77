@@ -57,8 +57,20 @@ variable "ansible_inventory_path" {
   default     = "../ansible/inventory.yml"
 }
 
-variable "ansible_db_credentials_path" {
+variable "ansible_vault_path" {
   type        = string
   description = "Path to the Ansible database credential file"
-  default     = "../ansible/group_vars/n8n/vault_database.yml"
+  default     = "../ansible/group_vars/n8n/vault_main.yml"
+}
+
+variable "ansible_vars_path" {
+  type        = string
+  description = "Path to the Ansible variables file"
+  default     = "../ansible/group_vars/n8n/vars_main.yml"
+}
+
+variable "sg_n8n_port" {
+  type        = number
+  description = "Port for the n8n service"
+  default     = 80
 }

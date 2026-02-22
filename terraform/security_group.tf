@@ -39,7 +39,7 @@ resource "yandex_vpc_security_group" "n8n-sg-vms" {
   ingress {
     protocol          = "TCP"
     description       = "balancer"
-    port              = 80
+    port              = var.sg_n8n_port
     security_group_id = yandex_vpc_security_group.n8n-sg-balancer.id
 
   }
