@@ -1,10 +1,10 @@
 install-requirements:
 	ansible-galaxy collection install -r requirements.yml
 
-encrypt-vault:
+encrypt-vaults:
 	ansible-vault encrypt group_vars/*/vault*.yml --vault-pass-file .vault_pass.txt
 
-decrypt-vault:
+decrypt-vaults:
 	ansible-vault decrypt group_vars/*/vault*.yml --vault-pass-file .vault_pass.txt
 
 prepare-hosts:

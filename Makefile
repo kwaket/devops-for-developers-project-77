@@ -15,10 +15,21 @@ decrypt-tf-secrets:
 	    --vault-pass-file ./ansible/.vault_pass.txt \
 		--output terraform/secret.yc.auto.tfvars
 
-tf-apply-only:
-	cd terraform && terraform apply -auto-approve
+tf-init:
+	make -C terraform init
 
-tf-apply: tf-apply-only ansible-encrypt-vaults
+tf-apply:
+	make -C terraform apply
+	cd ansible && ansible-vault encrypt group_vars/n8n/vault_main.yml --vault-password-file .vault_pass.txt
 
 tf-destroy:
-	cd terraform && terraform destroy -auto-approve
+	make -C terraform destroy
+
+ansible-install-requirements:
+	make -C ansible install-requirements
+
+ansible-prepare-hosts:
+	make -C ansible prepare-hosts
+
+ansible-deploy:
+	make -C ansible deploy-app
