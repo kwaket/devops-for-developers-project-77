@@ -1,14 +1,19 @@
-ansible-encrypt-vaults:
-	cd ansible && ansible-vault encrypt group_vars/*/vault*.yml --vault-password-file .vault_pass.txt
+decrypt-tf-secrets:
+	ansible-vault decrypt terraform/vault/secret.backend.tfvars.encrypted \
+	    --vault-pass-file ./ansible/.vault_pass.txt \
+		--output terraform/secret.backend.tfvars
 
-ansible-decrypt-vaults:
-	cd ansible && ansible-vault decrypt group_vars/*/vault*.yml --vault-password-file .vault_pass.txt
+	ansible-vault decrypt terraform/vault/secret.n8n.auto.tfvars.encrypted \
+	    --vault-pass-file ./ansible/.vault_pass.txt \
+		--output terraform/secret.n8n.auto.tfvars
 
-ansible-prepare:
-	cd ansible && ansible-playbook -i inventory.yml playbook.yml --tags prepare --vault-password-file .vault_pass.txt
+	ansible-vault decrypt terraform/vault/secret.ssh.auto.tfvars.encrypted \
+	    --vault-pass-file ./ansible/.vault_pass.txt \
+		--output terraform/secret.ssh.auto.tfvars
 
-ansible-deploy:
-	cd ansible && ansible-playbook -i inventory.yml playbook.yml --tags n8n --vault-password-file .vault_pass.txt
+	ansible-vault decrypt terraform/vault/secret.yc.auto.tfvars.encrypted \
+	    --vault-pass-file ./ansible/.vault_pass.txt \
+		--output terraform/secret.yc.auto.tfvars
 
 tf-apply-only:
 	cd terraform && terraform apply -auto-approve
