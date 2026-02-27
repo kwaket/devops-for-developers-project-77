@@ -1,5 +1,5 @@
 init:
-	terraform init
+	terraform init -backend-config=secret.backend.tfvars
 
 upgrade:
 	terraform init -upgrade
