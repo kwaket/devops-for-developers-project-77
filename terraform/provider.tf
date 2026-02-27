@@ -8,6 +8,10 @@ terraform {
       source  = "DataDog/datadog"
       version = "3.90.0"
     }
+    local = {
+      source  = "hashicorp/local"
+      version = "~> 2.5"
+    }
   }
 }
 
