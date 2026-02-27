@@ -1,6 +1,6 @@
 ### Hexlet tests and linter status:
-[![Actions Status](https://github.com/kwaket/devops-for-developers-project-77/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/kwaket/devops-for-developers-project-77/actions)
-
+[![Actions Status](https://github.com/kwaket/devops-for-developers-project-77/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/kwaket/devops-for-developers-project-77/actions) 
+![Upmon](https://app.upmon.com/badge/7a0e9df5-dee6-4526-9d90-512f86/p2Nux392-2.svg)
 
 # n8n infrastructure deploy
 Deploy n8n infrastructure using Terraform and Ansible.
@@ -40,4 +40,8 @@ Link to the deployed app: [n8n.savangard.space](https://n8n.savangard.space)
   ```
   make ansible-prepare-hosts
   make ansible deploy
+  ```
+3. Install Datadog monitoring
+  ```
+  make ansible-install-monitoring:
   ```
