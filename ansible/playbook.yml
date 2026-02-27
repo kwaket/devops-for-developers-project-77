@@ -55,7 +55,7 @@
 
   tasks:
     - name: Import the Datadog Agent role from the Datadog collection
-      import_role:
+      ansible.builtin.import_role:
         name: datadog.dd.agent
 
     - name: Configure Datadog HTTP check
@@ -81,13 +81,13 @@
 
   tasks:
     - name: Generate backend vars
-      template:
+      ansible.builtin.template:
         src: templates/tf_secrets/secret.backend.tfvars.j2
         dest: ../terraform/secret.backend.tfvars
         mode: "0644"
 
     - name: Generate auto vars
-      template:
+      ansible.builtin.template:
         src: templates/tf_secrets/secret.auto.tfvars.j2
         dest: ../terraform/secret.auto.tfvars
         mode: "0644"
