@@ -89,5 +89,4 @@ variable "ansible_n8n_vars_path" {
 variable "sg_n8n_port" {
   type        = number
   description = "Port for the n8n service"
-  default     = 80
 }

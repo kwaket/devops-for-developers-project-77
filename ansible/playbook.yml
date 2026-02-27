@@ -43,7 +43,7 @@
         restart_policy: unless-stopped
         env_file: /opt/n8n/.env
         published_ports:
-          - "{{ n8n_port }}:5678"
+          - "{{ vault_n8n_port }}:5678"
         volumes:
           - "n8n_/home/node/.n8n"
         pull: true
@@ -74,3 +74,20 @@
         state: restarted
         enabled: true
       tags: datadog
+
+- name: Generate Terraform secrets
+  hosts: localhost
+  tags: terraform
+
+  tasks:
+    - name: Generate backend vars
+      template:
+        src: templates/tf_secrets/secret.backend.tfvars.j2
+        dest: ../terraform/secret.backend.tfvars
+        mode: "0644"
+
+    - name: Generate auto vars
+      template:
+        src: templates/tf_secrets/secret.auto.tfvars.j2
+        dest: ../terraform/secret.auto.tfvars
+        mode: "0644"

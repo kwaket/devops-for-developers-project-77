@@ -12,9 +12,11 @@ all:
     n8n:
       hosts:
         web1:
-          ansible_host: 93.77.189.144
+          ansible_host: 93.77.176.80
           ansible_user: debian
+          n8n_db_host: rc1a-1fiibltc0eecs65d.mdb.yandexcloud.net
 
         web2:
-          ansible_host: 93.77.190.115
+          ansible_host: 93.77.190.175
           ansible_user: debian
+          n8n_db_host: rc1a-1fiibltc0eecs65d.mdb.yandexcloud.net

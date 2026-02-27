@@ -14,7 +14,9 @@ all:
         web1:
           ansible_host: ${web_1_ip}
           ansible_user: ${vm_user}
+          n8n_db_hsot: ${db_host}
 
         web2:
           ansible_host: ${web_2_ip}
           ansible_user: ${vm_user}
+          n8n_db_hsot: ${db_host}
