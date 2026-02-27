@@ -15,12 +15,16 @@ decrypt-tf-secrets:
 	    --vault-pass-file ./ansible/.vault_pass.txt \
 		--output terraform/secret.yc.auto.tfvars
 
+	ansible-vault decrypt terraform/vault/secret.datadog.auto.tfvars.encrypted \
+	    --vault-pass-file ./ansible/.vault_pass.txt \
+		--output terraform/secret.datadog.auto.tfvars
+
 tf-init:
 	make -C terraform init
 
 tf-apply:
 	make -C terraform apply
-	cd ansible && ansible-vault encrypt group_vars/n8n/vault_main.yml --vault-password-file .vault_pass.txt
+	cd ansible && ansible-vault encrypt group_vars/*/vault_main.yml --vault-password-file .vault_pass.txt
 
 tf-destroy:
 	make -C terraform destroy
@@ -33,3 +37,6 @@ ansible-prepare-hosts:
 
 ansible-deploy:
 	make -C ansible deploy-app
+
+ansible-install-monitoring:
+	make -C ansible install-monitoring

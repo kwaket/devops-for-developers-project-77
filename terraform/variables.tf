@@ -19,6 +19,16 @@ variable "yc_zone" {
   default     = "ru-central1-a"
 }
 
+variable "datadog_api_key" {
+  type        = string
+  description = "Datadog API key"
+}
+
+variable "datadog_app_key" {
+  type        = string
+  description = "Datadog Application key"
+}
+
 variable "db_user" {
   type        = string
   description = "Name of the n8n database user"
@@ -57,13 +67,20 @@ variable "ansible_inventory_path" {
   default     = "../ansible/inventory.yml"
 }
 
-variable "ansible_vault_path" {
+
+variable "ansible_all_vault_path" {
+  type        = string
+  description = "Path to the Ansible vault file"
+  default     = "../ansible/group_vars/all/vault_main.yml"
+}
+
+variable "ansible_n8n_vault_path" {
   type        = string
   description = "Path to the Ansible database credential file"
   default     = "../ansible/group_vars/n8n/vault_main.yml"
 }
 
-variable "ansible_vars_path" {
+variable "ansible_n8n_vars_path" {
   type        = string
   description = "Path to the Ansible variables file"
   default     = "../ansible/group_vars/n8n/vars_main.yml"

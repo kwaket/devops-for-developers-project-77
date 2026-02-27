@@ -12,3 +12,6 @@ prepare-hosts:
 
 deploy-app:
 	ansible-playbook playbook.yml -i inventory.yml --tags n8n --vault-pass-file .vault_pass.txt
+
+install-monitoring:
+	ansible-playbook playbook.yml -i inventory.yml --tags monitoring --vault-pass-file .vault_pass.txt

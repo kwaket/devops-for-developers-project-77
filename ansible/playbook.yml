@@ -47,3 +47,30 @@
         volumes:
           - "n8n_/home/node/.n8n"
         pull: true
+
+- name: Install Datadog agent
+  hosts: n8n
+  become: true
+  tags: monitoring
+
+  tasks:
+    - name: Import the Datadog Agent role from the Datadog collection
+      import_role:
+        name: datadog.dd.agent
+
+    - name: Configure Datadog HTTP check
+      ansible.builtin.template:
+        src: templates/http_check.yml.j2
+        dest: /etc/datadog-agent/conf.d/http_check.d/n8n.yml
+        owner: dd-agent
+        group: dd-agent
+        mode: "0644"
+      notify: restart datadog-agent
+      tags: datadog
+
+    - name: Ensure Datadog agent is running
+      ansible.builtin.service:
+        name: datadog-agent
+        state: restarted
+        enabled: true
+      tags: datadog

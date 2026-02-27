@@ -7,13 +7,19 @@ resource "local_file" "ansible_inventory" {
   filename = var.ansible_inventory_path
 }
 
-resource "local_file" "ansible_vault" {
+resource "local_file" "ansible_n8n_vault" {
   content = templatefile("templates/app_vault.yml.tpl", {
     db_password = yandex_mdb_postgresql_user.dbuser.password
   })
-  filename = var.ansible_vault_path
+  filename = var.ansible_n8n_vault_path
 }
 
+resource "local_file" "ansible_all_vault" {
+  content = templatefile("templates/all_vault.yml.tpl", {
+    datadog_api_key = var.datadog_api_key
+  })
+  filename = var.ansible_all_vault_path
+}
 
 resource "local_file" "ansible_vars" {
   content = templatefile("templates/app_vars.yml.tpl", {
@@ -24,5 +30,5 @@ resource "local_file" "ansible_vars" {
     app_port       = var.sg_n8n_port
     db_ssl_enabled = "true"
   })
-  filename = var.ansible_vars_path
+  filename = var.ansible_n8n_vars_path
 }
