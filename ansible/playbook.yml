@@ -43,7 +43,7 @@
         restart_policy: unless-stopped
         env_file: /opt/n8n/.env
         published_ports:
-          - "{{ vault_n8n_port }}:5678"
+          - "{{ n8n_port }}:5678"
         volumes:
           - "n8n_/home/node/.n8n"
         pull: true

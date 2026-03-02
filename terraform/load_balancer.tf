@@ -7,7 +7,7 @@ resource "yandex_alb_backend_group" "n8n-bg" {
 
   http_backend {
     name             = "n8n-backend"
-    port             = 80
+    port             = var.n8n_port
     target_group_ids = [yandex_alb_target_group.n8n-tg.id]
     healthcheck {
       timeout             = "3s"

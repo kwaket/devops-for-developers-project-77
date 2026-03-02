@@ -86,7 +86,7 @@ variable "ansible_n8n_vars_path" {
   default     = "../ansible/group_vars/n8n/vars_main.yml"
 }
 
-variable "sg_n8n_port" {
+variable "n8n_port" {
   type        = number
   description = "Port for the n8n service"
 }
