@@ -65,7 +65,6 @@
         owner: dd-agent
         group: dd-agent
         mode: "0644"
-      notify: restart datadog-agent
       tags: datadog
 
     - name: Ensure Datadog agent is running
