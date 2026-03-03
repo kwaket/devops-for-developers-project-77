@@ -48,7 +48,7 @@ resource "yandex_vpc_security_group" "n8n-sg-vms" {
     protocol       = "TCP"
     description    = "ssh"
     port           = 22
-    v4_cidr_blocks = ["0.0.0.0/0"]
+    v4_cidr_blocks = ["46.242.0.0/18"]
   }
 
   egress {
